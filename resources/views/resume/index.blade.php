@@ -1,8 +1,8 @@
 @extends('layouts.layout')
 
-@section('title', 'Home')
+@section('title', 'Resume')
 
 
 @section('content')
-    <p>Welcome</p>
+    <p>Resume list</p>
 @endsection

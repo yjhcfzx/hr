@@ -14,3 +14,5 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('resume/{id}', 'ResumeController@show');
+Route::get('resume', 'ResumeController@index');
