@@ -16,8 +16,24 @@ class ResumeController extends Controller
     }
     public function uploadSave(Request $request)
     {
+      
+      
         $name =  $request->input('name');
-        return view('resume.index' );
+        if ($request->hasFile('resume')) {
+            $file = $request->file('resume');
+            $extension = $file->extension();
+           
+             if($name){
+                 $fileName = $name .  '.' . $extension;
+             }else{
+                 $fileName = $file->getClientOriginalName();
+             }
+            $path = $request->resume->storeAs('resumes',  $fileName);
+            var_dump($path);die;
+            
+        }
+        var_dump($name);die;
+        return view('resume.upload' );
     }
     /**
      * Show the profile for the given user.
