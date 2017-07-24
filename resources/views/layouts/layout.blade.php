@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <title> @yield('title')</title>
 
         <!-- Fonts -->
@@ -76,8 +76,8 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Resume <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li> <a href="{{ url('/resume') }}">list</a></li>
-                  <li> <a href="{{ url('/resume/upload') }}">upload</a></li>
+                  <li> <a href="{{ action('ResumeController@index') }}">list</a></li>
+                  <li> <a href="{{ action('ResumeController@upload') }}">upload</a></li>
                 </ul>
               </li>
             </ul>

@@ -14,5 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('resume/{id}', 'ResumeController@show');
+Route::get('resume/detail/{id}', 'ResumeController@show');
 Route::get('resume', 'ResumeController@index');
+Route::get('resume/upload', 'ResumeController@upload');
+Route::post('resume/upload', 'ResumeController@uploadSave');

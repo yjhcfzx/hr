@@ -1,6 +1,6 @@
 <?php
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
 use App\User;
 use App\Http\Controllers\Controller;
 
@@ -8,6 +8,15 @@ class ResumeController extends Controller
 {
     public function index()
     {
+        return view('resume.index' );
+    }
+    public function upload()
+    {
+        return view('resume.upload' );
+    }
+    public function uploadSave(Request $request)
+    {
+        $name =  $request->input('name');
         return view('resume.index' );
     }
     /**
@@ -18,6 +27,7 @@ class ResumeController extends Controller
      */
     public function show($id)
     {
-        return view('user.profile', ['user' => User::findOrFail($id)]);
+        return view('resume.index' );
+       // return view('user.profile', ['user' => User::findOrFail($id)]);
     }
 }
