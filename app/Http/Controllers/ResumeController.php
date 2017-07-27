@@ -3,11 +3,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Http\Controllers\Controller;
-
+use Resume;
 class ResumeController extends Controller
 {
     public function index()
-    {
+    {Resume::parse();die;
         return view('resume.index' );
     }
     public function upload()
