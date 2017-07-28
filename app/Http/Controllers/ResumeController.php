@@ -40,7 +40,7 @@ class ResumeController extends Controller {
                 $fileName = $file->getClientOriginalName();
             }
             $path = $request->resume->storeAs('resumes', $fileName);
-            $filePath = storage_path() . '/app/' . $path;
+            $filePath = storage_path('app') . '/' . $path;
             $fileObj = \PHPExcel_IOFactory::load($filePath);
             $sheetObj = $fileObj->getSheet(0);
             $sheetData = $sheetObj->toArray(null, true, true, true);
