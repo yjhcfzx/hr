@@ -22,7 +22,13 @@ class ResumeController extends Controller {
 
     public function uploadSave(Request $request) {
         $start_date = date('Y-m-d',strtotime('friday last week'));
-
+        $date = '2017-07-18';
+        if($date < $start_date){
+            echo 'smaller';
+        }else{
+            echo 'bigger';
+        }
+        die;
         $name = $request->input('name');
         if ($request->hasFile('resume')) {
             $file = $request->file('resume');
