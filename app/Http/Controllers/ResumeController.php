@@ -21,7 +21,7 @@ class ResumeController extends Controller {
     }
 
     public function uploadSave(Request $request) {
-
+        $start_date = date('Y-m-d',strtotime('friday last week'));
 
         $name = $request->input('name');
         if ($request->hasFile('resume')) {
@@ -40,7 +40,7 @@ class ResumeController extends Controller {
             $sheetData = $sheetObj->toArray(null, true, true, true);
             for ($i = 1; $i < count($sheetData); $i++) {
                 $row = $sheetData[$i];
-
+                
                 foreach ($row as $j => $value) {
                     echo ($row[$j]);
                     echo ' ';
