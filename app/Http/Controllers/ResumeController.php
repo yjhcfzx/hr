@@ -23,12 +23,7 @@ class ResumeController extends Controller {
     public function uploadSave(Request $request) {
         $start_date = date('Y-m-d',strtotime('friday last week'));
         $date = '2017-07-18';
-        if($date < $start_date){
-            echo 'smaller';
-        }else{
-            echo 'bigger';
-        }
-        die;
+       
         $name = $request->input('name');
         if ($request->hasFile('resume')) {
             $file = $request->file('resume');
@@ -43,17 +38,27 @@ class ResumeController extends Controller {
             $filePath = storage_path('app') . '/' . $path;
             $fileObj = \PHPExcel_IOFactory::load($filePath);
             $sheetObj = $fileObj->getSheet(0);
+            $sheetCount = $fileObj->getSheetCount();
+            $newSheet = $fileObj->createSheet($sheetCount); 
             $sheetData = $sheetObj->toArray(null, true, true, true);
             for ($i = 1; $i < count($sheetData); $i++) {
                 $row = $sheetData[$i];
                 
                 foreach ($row as $j => $value) {
-                    echo ($row[$j]);
-                    echo ' ';
+                    //echo ($row[$j]);
+                    //echo ' ';
+                   $newSheet->setCellValue($j . $i, $row[$j]); 
                 }
-                echo '</br>';
+                //echo '</br>';
             }
-            die;
+           $savePath = storage_path('app') . '/' . 'resumes/edt_' . $fileName;
+ 
+           //$savePath =  'edt_' . $path;
+           $objWriter = PHPExcel_IOFactory::createWriter($fileObj, 'Excel2007');
+           
+           $rst = $objWriter->save($savePath);
+
+           return response()->download($savePath);
 //            $highestRow = $sheetObj->getHighestRow();
 //            $highestColumn = $sheetObj->getHighestColumn();
 //            $i = 0;
