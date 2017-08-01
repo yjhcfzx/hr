@@ -40,6 +40,8 @@ class ResumeController extends Controller {
             $sheetObj = $fileObj->getSheet(0);
             $sheetCount = $fileObj->getSheetCount();
             $newSheet = $fileObj->createSheet($sheetCount); 
+            $dateStr = date("Y-m-d") . '-' .date("Y-m-d",strtotime('-7 days'));
+            $newSheet->setTitle($dateStr);
             $sheetData = $sheetObj->toArray(null, true, true, true);
             for ($i = 1; $i < count($sheetData); $i++) {
                 $row = $sheetData[$i];
